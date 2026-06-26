@@ -48,9 +48,15 @@ class NvmlSensor(Sensor):
                 "or run with --mock to use the simulated card."
             ) from e
         self._nvml = pynvml
-        pynvml.nvmlInit()
-        self._h = pynvml.nvmlDeviceGetHandleByIndex(index)
-        name = pynvml.nvmlDeviceGetName(self._h)
+        try:
+            pynvml.nvmlInit()
+            self._h = pynvml.nvmlDeviceGetHandleByIndex(index)
+            name = pynvml.nvmlDeviceGetName(self._h)
+        except pynvml.NVMLError as e:
+            raise RuntimeError(
+                f"couldn't open NVIDIA GPU {index} via NVML ({e}). Check that the "
+                f"driver is installed and the index is right, or run with --mock."
+            ) from e
         self.gpu_name = name.decode() if isinstance(name, bytes) else name
 
     def read(self) -> Reading:

@@ -15,9 +15,11 @@ v0 ships a GEMM load to stand in for it (see [Roadmap](#roadmap)).
 git clone https://github.com/cjnpunk/kilngpu
 cd kilngpu
 pip install -e .              # rich is the only hard dependency
-pip install -e ".[nvml]"      # read a real card  (nvidia-ml-py)
-pip install -e ".[load]"      # drive a real card (torch + CUDA)
+pip install -e ".[gpu]"       # NVIDIA: read + drive the card (nvidia-ml-py + torch)
 ```
+
+`[gpu]` pulls in both `nvidia-ml-py` (telemetry) and `torch` (the load). If you
+only want one, the `[nvml]` and `[load]` extras install them separately.
 
 ## Run
 
