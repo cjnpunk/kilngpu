@@ -1,5 +1,7 @@
 # kilngpu
 
+<img width="1280" height="511" alt="telegram-cloud-photo-size-1-5042290961718906155-y" src="https://github.com/user-attachments/assets/b33f152a-b5c1-4877-80d7-215d46e71281" />
+
 A self-regulating agent that lives on your GPU. It runs a workload on the card,
 reads the card's temperature, and modulates how hard it works to hold a target
 temperature — its own compute is the heat, so the loop closes on itself. When the
